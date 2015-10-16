@@ -1,0 +1,43 @@
+﻿{% extends 'main.html' %}
+
+{% block head %}
+        {% load staticfiles %}
+        <link type='text/css' rel='stylesheet' href='{% static 'type_one/filtering.css' %}'>
+        <link type='text/css' rel='stylesheet' href='{% static 'type_one/create.css' %}'>
+        {% block title %}Информация о повреждении{% endblock %}
+{% endblock %}
+
+{% block h1 %} Информация о повреждении  {% endblock %}
+
+{% block content %}
+        <table id='detail_table' class='table table-striped'>
+            <thead>
+                <th>Станция</th>
+                <th>Повреждения</th> 
+                <th>Начало</th>
+                <th>Окончание</th> 
+                <th>Продолж-cть</th> 
+                <th>Оператор</th>
+                <th>Комментарии</th>
+            </thead>
+            <tbody>    
+                <tr>
+                    <td>{{failure.station_name}}</td> 
+                    <td>{{failure.type_of_failure}}</td>
+                    <td>{{failure.time_on}} {{failure.time_1|time:"H:i:s"}}</td>
+                    <td>{{failure.time_off}} {{failure.time_2|time:"H:i:s"}}</td>
+                    <td>{{failure.delt_time}}</td>
+                    <td><a href='{% url 'type_one:user_detail' failure.username %}'>{{failure.fio_name}}</a></td>
+                    <td class='col'>{{failure.comment}}</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <br>
+        
+        <form id='button_back_create' action="{% url 'type_one:delete_failure' failure.id %}" method="post">
+            {% csrf_token %}
+            <button type="button" class="btn btn-primary" onclick='history.back()'>Назад</button>
+            <button type="submit" class="btn btn-danger" >Удалить</button>
+        </form>
+{% endblock %}

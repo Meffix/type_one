@@ -1,0 +1,84 @@
+﻿{% extends 'main.html' %}
+
+{% block title %}Добавить повреждение{% endblock %}	
+
+{% block head %}
+    {% load staticfiles %}
+    <link rel='stylesheet' type='text/css' href='{% static 'type_one/create.css' %}'/>
+    {{form.media}}
+    
+    <script type="text/javascript">
+ 		 $(function() {
+   		 $( "#id_time_on, #id_time_off" ).datepicker({dateFormat: 'yy-mm-dd', changeMonth: true,
+      changeYear: true});
+  			});
+  	</script> 
+{% endblock %}
+
+{% block h1 %}Добавить повреждение{% endblock %}
+{% block content %}
+    
+    <form class='form-horizontal' action="" method="post">
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Станция</label>
+            <div class="col-sm-10">
+                {{form.station_name}}
+                {{form.station_name.errors}}
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Тип повреждения</label>
+            <div class="col-sm-10">
+                {{form.type_of_failure}}
+                {{form.type_of_failure.errors}}
+            </div>
+        </div>
+        
+        <div class='form-group'>
+            <label class='col-sm-2 control-label'>Дата начала</label>
+            <div class='col-sm-10'>
+                {{form.time_on}}
+                {{form.time_on.errors}}
+            </div>
+        </div>
+        
+        <div class='form-group'>
+            <label class='col-sm-2 control-label'>Дата завершения</label>
+            <div class='col-sm-10'>
+                {{form.time_off}}
+                {{form.time_off.errors}}
+            </div>
+        </div>
+        
+         <div class='form-group'>
+            <label class='col-sm-2 control-label'>Время начала</label>
+            <div class='col-sm-10'>
+                {{form.time_1}}
+                {{form.time_1.errors}}
+            </div>
+        </div>
+           
+        <div class='form-group'>
+            <label class='col-sm-2 control-label'>Время завершения</label>
+            <div class='col-sm-10'>
+                {{form.time_2}}
+                {{form.time_2.errors}}
+            </div>
+        </div>
+        
+        <div class='form-group'>
+            <label id='not_required' class='col-sm-2 control-label'>Комментарии</label>
+            <div class='col-lg-10'>
+                {{form.comment}}
+            </div>
+        </div>
+        
+        <div id='button_back_create'>
+            <button type='submit' class="btn btn-primary" onclick="history.back()">Назад</button>
+            <button type="submit" class="btn btn-success">Добавить</button>
+        </div>
+
+    </form>
+{% endblock %}

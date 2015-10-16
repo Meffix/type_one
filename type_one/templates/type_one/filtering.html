@@ -1,0 +1,89 @@
+﻿{% extends 'main.html' %}
+
+{% block title%}Просмотр повреждений{%endblock%}
+
+{% block head  %}
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'type_one/filtering.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'type_one/create.css' %}" />
+    {{filter_form.media}}
+    
+  	<script type="text/javascript">
+ 		 $(function() {
+   		 $( "#id_time_on, #id_time_off" ).datepicker({dateFormat: 'yy-mm-dd', changeMonth: true,
+      changeYear: true});
+  			});
+  	</script> 
+{% endblock %}
+
+{% block h1 %}Просмотр повреждений{% endblock %}
+{% block content %}
+    
+    <form class='form-horizontal' action='' method='post'>
+    	<div class='form-group'>
+    	   <label id='not_required' class="col-sm-2 control-label">Станция</label>
+    	   <div class='col-sm-10'>
+    	       {{filter_form.station_name_1}}
+    	   </div>
+    	</div>
+    	
+    	<div class='form-group'>
+            <label class='col-sm-2 control-label'>Дата начала</label>
+            <div class='col-sm-10'>
+                {{filter_form.time_on}}
+                {{filter_form.time_on.errors}}
+            </div>
+        </div>
+        
+        <div class='form-group'>
+            <label class='col-sm-2 control-label'>Дата завершения</label>
+            <div class='col-sm-10'>
+                {{filter_form.time_off}}
+                {{filter_form.time_off.errors}}
+            </div>
+        </div>
+        
+        <div id='button_back_create'>
+            <button type='submit' class="btn btn-primary" onclick="history.back()">Назад</button>
+            <button type="submit" class="btn btn-success">Просмотреть</button>
+        </div>
+    </form>
+    
+    {%if filter_objects %}
+        <table class='table table-striped'>
+            
+            <thead>
+                <th>id</th>
+                <th>Станция</th>
+                <th>Повреждение</th>
+                <th>Дата начала</th>
+                <th>Дата окончания</th>
+            <thead>
+            
+            <tbody>
+                {%for object in filter_objects%}
+                {% if 'Crit' in object.type_of_failure.failure_type %}
+                <tr class='danger'>
+                {% else %}
+                <tr>
+                {% endif %}
+                    <td>
+                        <a href='{% url 'type_one:detail' object.id %}'>
+                            {{object.id}}
+                        </a>
+                    </td>
+                    <td>{{object.station_name}}</td>
+                    <td>{{object.type_of_failure}}</td>
+                    <td>{{object.time_on}}</td>
+                    <td>{{object.time_off}}</td>
+                </tr>
+                {%endfor%}
+            </tbody>
+
+        </table>
+    {%endif%}
+    
+    {%if sum%}
+        <p>Общая продолжительность повреждений: <strong>{{sum}}</strong></p>
+    {%endif%}
+{% endblock %}

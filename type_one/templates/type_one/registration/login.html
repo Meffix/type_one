@@ -1,0 +1,25 @@
+﻿{% extends 'main.html' %}
+
+{% block head %}
+    {% load staticfiles %}
+    <!--<link rel="stylesheet" type="text/css" href="{% static 'type_one/style.css'%}" />-->
+{% endblock %}
+
+{% block content %}
+
+    {% if form.errors %}
+    	<p>Your username and password didn't match.
+    		Please try again.</p>
+    {% endif %}
+    
+    <div class='login-pos'>
+        <form method="post" action="." class='login-form' > 
+            {% csrf_token %}
+        	<span class="title">Вход в систему</span>
+        	<p>{{ form.username }}</p>
+        	<p>{{ form.password }}</p>
+        	<input type="submit" value="login" />
+        </form>
+    </div>
+    
+{% endblock %}

@@ -1,0 +1,19 @@
+﻿{% extends 'main.html' %}
+
+{% block h1 %} Онлайн журнал повреждений {% endblock %}
+{% block content %}
+
+{% if user.is_authenticated %}
+<p>Привет, <a href='{%url 'type_one:account' user.username %}'>{{user.username}}</a> | <a href="{% url 'type_one:logout' %}">(logout)</a> </p>
+	
+{% else %}
+
+<p><a href="{% url 'type_one:login' %}">Войти</a> или <a href="{% url 'type_one:registration' %}">зарегистрироваться</a> </p>
+
+{%endif%}
+<div class='twitter'>		
+    <a class="twitter-timeline" href="https://twitter.com/uz_gov_ua" data-widget-id="654692454877151232">Твиты от @uz_gov_ua</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</div>		
+{% endblock %}		
+ 

@@ -1,0 +1,15 @@
+﻿{% load staticfiles %}
+	<link rel="stylesheet" type="text/css" href="{% static 'type_one/style.css'%}" />
+<title>Account management</title>
+
+<form action='{% url 'type_one:account' username %}' method='POST'>
+
+{{user.as_p}}
+
+
+<input type="submit" formaction='/type_one/' value="Назад" />
+<div id='button'>
+<input type='submit' value='Сохранить' />
+</div>
+	
+</form>
