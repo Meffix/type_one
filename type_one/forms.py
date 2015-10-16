@@ -130,7 +130,7 @@ class RegistrationForm(UserCreationForm):
                             ) 
              
     def clean_password2(self):
-        if len(self.cleaned_data['password1'])<6:
+        if len(self.cleaned_data['password1']) < 6:
             raise forms.ValidationError(u'Минимальная  длина пароля 6 символов')
         if 'password1' in self.cleaned_data:
             p1 = self.cleaned_data['password1']
