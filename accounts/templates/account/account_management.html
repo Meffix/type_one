@@ -2,7 +2,7 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'type_one/style.css'%}" />
 <title>Account management</title>
 
-<form action='{% url 'type_one:account' username %}' method='POST'>
+<form action='{% url 'accounts:account' username %}' method='POST'>
 
 {{user.as_p}}
 

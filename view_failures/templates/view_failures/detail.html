@@ -35,7 +35,7 @@
         
         <br>
         
-        <form id='button_back_create' action="{% url 'type_one:delete_failure' failure.id %}" method="post">
+        <form id='button_back_create' action="{% url 'view_failures:delete_failure' failure.id %}" method="post">
             {% csrf_token %}
             <button type="button" class="btn btn-primary" onclick='history.back()'>Назад</button>
             <button type="submit" class="btn btn-danger" >Удалить</button>

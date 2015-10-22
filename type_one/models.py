@@ -8,21 +8,9 @@ class CustomUser (User, models.Model):
     day_of_birthday = models.DateField(blank=True, null=True, 
                                      verbose_name='Дата рождения')
 
-type_choices=(
-                  ('Critical', (
-                                ('Ethernet link down','Ethernet link down'),
-                                ('Crit_2','Crit_2'),
-                                )
-                   ),
-                  ('Major', (
-                             ('Major_1','Major_1'),
-                             ('Major_2','Major_2'),
-                             )
-                   ),
-                  )
-   
 class FailureType(models.Model):
-    failure_type = models.CharField(max_length=50, choices=type_choices)
+    failure_type = models.CharField(max_length=50)
+    type = models.CharField(max_length=50)
     
     class Meta:
         ordering = ['failure_type']
@@ -30,12 +18,6 @@ class FailureType(models.Model):
     def __str__(self):
         return self.failure_type
     
-class Fio(models.Model):
-    fio = models.CharField(max_length=50)
-    
-    def __str__(self):
-        return self.fio
-
 class Station(models.Model):
     station_name = models.CharField(max_length=50)  
     
@@ -44,9 +26,7 @@ class Station(models.Model):
         
     def __str__(self):
         return self.station_name  
-    
-    
-        
+     
 class ListFailure(models.Model):
     station_name = models.ForeignKey(Station, verbose_name=u'Cтанция')
     type_of_failure = models.ForeignKey(FailureType, 
@@ -68,10 +48,3 @@ class ListFailure(models.Model):
     
     class Meta:
         ordering = ['time_on']
-
-class ListFailureFiltering(ListFailure, models.Model):
-    station_name_1 = models.ForeignKey(Station, 
-                                     blank=True, null=True, 
-                                     verbose_name=u'Станция')
-
-    

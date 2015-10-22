@@ -49,6 +49,10 @@
         </div>
     </form>
     
+    {%ifequal no_failure True%}
+        <p>No fail</p>
+    {%endifequal%}
+    
     {%if filter_objects %}
         <table class='table table-striped'>
             
@@ -62,13 +66,13 @@
             
             <tbody>
                 {%for object in filter_objects%}
-                {% if 'Crit' in object.type_of_failure.failure_type %}
+                {% if 'Critical' in object.type_of_failure.type %}
                 <tr class='danger'>
                 {% else %}
                 <tr>
                 {% endif %}
                     <td>
-                        <a href='{% url 'type_one:detail' object.id %}'>
+                        <a href='{% url 'view_failures:detail' object.id %}'>
                             {{object.id}}
                         </a>
                     </td>

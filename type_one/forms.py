@@ -1,18 +1,13 @@
 from django import forms
 from django.utils import timezone
 from django.forms.models import ModelForm
-from django.forms.widgets import Select, TextInput, Textarea, EmailInput,\
-    PasswordInput
-from django.contrib.auth.models import User
-from django.core.exceptions import ObjectDoesNotExist
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.forms.widgets import Select, TextInput, Textarea
 from django.forms.utils import ErrorList
 from django.utils.safestring import mark_safe
-from django.forms.fields import CharField
 
-from .models import ListFailure, ListFailureFiltering, CustomUser
+from .models import ListFailure
 
-
+'''
 class CustomAuthenticationForm(AuthenticationForm):
     username = forms.CharField(max_length=254, 
                                widget=TextInput(attrs={'placeholder':'Логин'}))
@@ -21,7 +16,7 @@ class CustomAuthenticationForm(AuthenticationForm):
                                         attrs={'placeholder':'Пароль'}
                                         ) 
                                )
-
+'''
 class CalendarWidget(forms.TextInput):
     class Media:
         css = {
@@ -96,19 +91,7 @@ class FailureList(ModelForm):
                 msg = u'Дата начала должна быть меньше даты окончания!'
                 self.add_error('time_on',msg)
 
-class TimeFilter(ModelForm):
-    '''
-    Form for filtering failure
-    '''
-    class Meta:
-        model = ListFailureFiltering
-        fields = ['station_name_1', 'time_on', 'time_off']
-        widgets = {'station_name_1':Select (attrs={'size':1, 
-                                                'class':'form-control',}),
-                 'time_on':CalendarWidget (attrs={'class':'form-control'}),
-                 'time_off':CalendarWidget (attrs={'class':'form-control'})
-                 }
-        
+'''
 class RegistrationForm(UserCreationForm):
     password1 = CharField(widget=PasswordInput(attrs={'class':'form-control',})
                           )
@@ -144,3 +127,4 @@ class AccountForm(ModelForm):
         model = CustomUser
         fields = ['username', 'day_of_birthday', 
                 'first_name', 'last_name', 'email']
+'''

@@ -4,11 +4,11 @@
 {% block content %}
 
 {% if user.is_authenticated %}
-<p>Привет, <a href='{%url 'type_one:account' user.username %}'>{{user.username}}</a> | <a href="{% url 'type_one:logout' %}">(logout)</a> </p>
+<p>Привет, <a href="{%url 'accounts:account' user.username %}">{{user.username}}</a> | <a href="{% url 'accounts:logout' %}">(logout)</a> </p>
 	
 {% else %}
 
-<p><a href="{% url 'type_one:login' %}">Войти</a> или <a href="{% url 'type_one:registration' %}">зарегистрироваться</a> </p>
+<p><a href="{% url 'accounts:login' %}">Войти</a> или <a href="{% url 'accounts:registration' %}">зарегистрироваться</a> </p>
 
 {%endif%}
 <div class='twitter'>		
