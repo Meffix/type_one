@@ -1,0 +1,28 @@
+body {
+  padding-top: 10px;
+}
+.starter-template {
+  padding: 40px 15px;
+}
+.container{
+    width:80%;
+}
+h1{
+    width:50%;
+    margin:auto;
+    margin-top:20px;
+    margin-bottom:20px;
+}
+.registration_h1{
+    width:20%;
+}
+#confirm{
+    width:70%;
+    margin:auto;
+    margin-top:20px;
+    margin-bottom:20px;
+}
+.twitter{
+    width:50%;
+    margin:auto;
+}

@@ -1,0 +1,43 @@
+input{
+    width:150px;
+    border:1px solid #bdbdbd;
+    border-radius:3px;
+    /*padding-left:37px;*/
+}
+#id_type_of_failure, #id_station_name, #id_station_name_1,
+#id_time_on, #id_time_off, #id_time_1,
+#id_time_2 {
+    width:150px;
+    border:1px solid #bdbdbd;
+}
+#id_username, #id_email, #id_password1, #id_password2{
+    width:200px;
+    border:1px solid #bdbdbd;
+}
+ 
+#not_required{
+    font-weight:normal;
+}
+#button_back_create{
+    width:210px;
+    margin:auto;
+    padding-top:10px;
+}
+button{
+    margin:5px;
+}
+
+.error{
+    font-size:12px;
+    position:relative;
+    color:red;
+}
+.col-sm-2{
+    width:40%;
+}
+.col-sm-10{
+    width:60%;
+}
+.col-lg-10{
+    width:40%;
+}

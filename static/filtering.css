@@ -1,0 +1,15 @@
+.table{
+    width:80%;
+    margin:auto;
+    margin-top:20px;
+    margin-bottom:20px;
+}
+p{
+    text-align:center;
+}
+#detail_table{
+    width:100%;
+}
+.col{
+    width:200px;
+}
